@@ -77,24 +77,24 @@ impl BmsHelper{
         let url = format!(
             "https://in.bookmyshow.com/pwa/api/de/venues?regionCode={}&eventType=MT",
             region_code,
-        );
+         );
         // Make request with user agent  headers
-        let client = reqwest::Client::new();
+         let client = reqwest::Client::new();
 
-        let resp = client
+         let _resp = client
             .get(&url)
             .send()
             .await?
             .json::<serde_json::Value>()
             .await?;
-
+	
         // Parse response and return a vector of tuple of venue name and venue code
-        let mut venues: Vec<(String, String)> = Vec::new();
-        for venue in resp["BookMyShow"]["arrVenue"].as_array().unwrap() {
-            let venue_name = venue["VenueName"].as_str().unwrap().to_string();
-            let venue_code = venue["VenueCode"].as_str().unwrap().to_string();
-            venues.push((venue_name, venue_code));
-        }
+         let venues: Vec<(String, String)> = Vec::new();
+        // for venue in resp["BookMyShow"]["arrVenue"].as_array().unwrap() {
+           // let venue_name = venue["VenueName"].as_str().unwrap().to_string();
+           // let venue_code = venue["VenueCode"].as_str().unwrap().to_string();
+            // venues.push((venue_name, venue_code));
+        // }
 
         Ok(venues)
     }
