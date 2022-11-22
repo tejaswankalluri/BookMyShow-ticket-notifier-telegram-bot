@@ -82,7 +82,7 @@ pub fn is_date_within_2_weeks(date_str: &str) -> bool{
 
     let diff = date.signed_duration_since(now);
     let days = diff.num_days();
-    if days > 14{
+    if days > 40{
         return false;
     }
 
